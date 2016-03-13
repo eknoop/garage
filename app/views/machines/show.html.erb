@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @machine.year %>
+</p>
+
+<p>
+  <strong>Make:</strong>
+  <%= @machine.make %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @machine.model %>
+</p>
+
+<p>
+  <strong>Details:</strong>
+  <%= @machine.details %>
+</p>
+
+<%= link_to 'Edit', edit_machine_path(@machine) %> |
+<%= link_to 'Back', machines_path %>
