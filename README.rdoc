@@ -1,4 +1,4 @@
-== README
+== GARAGE
 
 For the compulsive tinkerer, Garage is a little app for tracking mods and expenses as they relate to machines in your garage.
 
