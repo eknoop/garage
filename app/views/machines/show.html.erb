@@ -1,24 +1,51 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Machine -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Year:</strong>
-  <%= @machine.year %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:year) %>:</strong></dt>
+  <dd><%= best_in_place @machine, :year %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:make) %>:</strong></dt>
+  <dd><%= best_in_place @machine, :make %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:model) %>:</strong></dt>
+  <dd><%= best_in_place @machine, :model %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:details) %>:</strong></dt>
+  <dd><%= best_in_place @machine, :details %></dd>
+</dl>
 
-<p>
-  <strong>Make:</strong>
-  <%= @machine.make %>
-</p>
+<h3>Expenses</h3>
+<table id='expenses' class="table table-striped">
+  <thead>
+    <tr>
+      <th>Cost</th>
+      <th>Purpose</th>
+      <th>Description</th>
+      <th></th>
+    </tr>
+  </thead>
 
-<p>
-  <strong>Model:</strong>
-  <%= @machine.model %>
-</p>
+  <tbody>
+    <% @machine.expenses.each do |expense| %>
+      <tr>
+        <td>$<%= best_in_place expense, :cost %></td>
+        <td><%= best_in_place expense, :purpose %></td>
+        <td><%= best_in_place expense, :description %></td>
+        <td><%= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<p>
-  <strong>Details:</strong>
-  <%= @machine.details %>
-</p>
+<%= link_to t('.new', :default => t("helpers.links.new expense")),
+            new_machine_expense_path(@machine),
+            :class => 'btn btn-primary pull-right' %>
+<br />
 
-<%= link_to 'Edit', edit_machine_path(@machine) %> |
-<%= link_to 'Back', machines_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              user_machines_path(current_user), :class => 'btn btn-default'  %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              machine_path(@machine),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

@@ -1,5 +1,6 @@
 class ExpensesController < ApplicationController
   before_action :set_expense, only: [:show, :edit, :update, :destroy]
+  before_action :set_machine, only: [:new, :create]
 
   # GET /expenses
   # GET /expenses.json
@@ -24,11 +25,11 @@ class ExpensesController < ApplicationController
   # POST /expenses
   # POST /expenses.json
   def create
-    @expense = Expense.new(expense_params)
+    @expense = @machine.expenses.build(expense_params)
 
     respond_to do |format|
       if @expense.save
-        format.html { redirect_to @expense, notice: 'Expense was successfully created.' }
+        format.html { redirect_to @machine, notice: 'Expense was successfully created.' }
         format.json { render :show, status: :created, location: @expense }
       else
         format.html { render :new }
@@ -56,7 +57,7 @@ class ExpensesController < ApplicationController
   def destroy
     @expense.destroy
     respond_to do |format|
-      format.html { redirect_to expenses_url, notice: 'Expense was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Expense was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,6 +66,10 @@ class ExpensesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_expense
       @expense = Expense.find(params[:id])
+    end
+
+    def set_machine
+      @machine = current_user.machines.find(params[:machine_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

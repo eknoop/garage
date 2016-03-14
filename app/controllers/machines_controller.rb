@@ -4,7 +4,7 @@ class MachinesController < ApplicationController
   # GET /machines
   # GET /machines.json
   def index
-    @machines = Machine.all
+    @machines = current_user.machines
   end
 
   # GET /machines/1
@@ -24,7 +24,8 @@ class MachinesController < ApplicationController
   # POST /machines
   # POST /machines.json
   def create
-    @machine = Machine.new(machine_params)
+    @machine = current_user.machines.build(machine_params)
+    @machine.expenses.build(cost: params[:machine][:purchase_price], purpose: 'Purchase')
 
     respond_to do |format|
       if @machine.save
@@ -64,7 +65,7 @@ class MachinesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_machine
-      @machine = Machine.find(params[:id])
+      @machine = current_user.machines.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

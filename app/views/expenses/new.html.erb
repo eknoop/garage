@@ -1,5 +1,42 @@
-<h1>New Expense</h1>
+<%- model_class = Expense -%>
 
-<%= render 'form' %>
+<div class="page-header">
+  <h1>Machine</h1>
+</div>
 
-<%= link_to 'Back', expenses_path %>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:year) %>:</strong></dt>
+  <dd><%= @machine.year %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:make) %>:</strong></dt>
+  <dd><%= @machine.make %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:model) %>:</strong></dt>
+  <dd><%= @machine.model %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:details) %>:</strong></dt>
+  <dd><%= @machine.details %></dd>
+</dl>
+
+<h3>Expenses</h3>
+<table id='expenses' class="table table-striped">
+  <thead>
+    <tr>
+      <th>Cost</th>
+      <th>Purpose</th>
+      <th>Description</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @machine.expenses.each do |expense| %>
+      <tr>
+        <td>$<%= best_in_place expense, :cost %></td>
+        <td><%= best_in_place expense, :purpose %></td>
+        <td><%= best_in_place expense, :description %></td>
+        <td><%= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h3>
+<%= render :partial => 'form' %>

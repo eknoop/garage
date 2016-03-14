@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users do
-    resources :machines do
+  resources :users, shallow: true do
+    resources :machines, shallow: true do
       resources :expenses
     end
   end
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'users#new'
+  root 'machines#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
