@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users, shallow: true do
+  resources :users, only: [], shallow: true do
     resources :machines, shallow: true do
       resources :expenses
     end
