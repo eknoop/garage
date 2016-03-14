@@ -2,17 +2,6 @@ class ExpensesController < ApplicationController
   before_action :set_expense, only: [:show, :edit, :update, :destroy]
   before_action :set_machine, only: [:new, :create]
 
-  # GET /expenses
-  # GET /expenses.json
-  def index
-    @expenses = Expense.all
-  end
-
-  # GET /expenses/1
-  # GET /expenses/1.json
-  def show
-  end
-
   # GET /expenses/new
   def new
     @expense = Expense.new
@@ -57,7 +46,7 @@ class ExpensesController < ApplicationController
   def destroy
     @expense.destroy
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'Expense was successfully destroyed.' }
+      format.html { redirect_to machine_url(@expense.machine), notice: 'Expense was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

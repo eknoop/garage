@@ -57,7 +57,7 @@ class MachinesController < ApplicationController
   def destroy
     @machine.destroy
     respond_to do |format|
-      format.html { redirect_to machines_url, notice: 'Machine was successfully destroyed.' }
+      format.html { redirect_to user_machines_url(current_user), notice: 'Machine was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
