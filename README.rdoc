@@ -1,28 +1,15 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+For the compulsive tinkerer, Garage is a little app for tracking expenses as they relate to machines in your garage.
 
-Things you may want to cover:
+=== Things to come:
 
-* Ruby version
+* Build sharing
 
-* System dependencies
+* Wish list
 
-* Configuration
+* Hypothetical builds
 
-* Database creation
+* Multiple types of machines (cars, bikes, hydraulics, electronics, etc)
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Magical things
