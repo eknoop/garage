@@ -1,6 +1,6 @@
 == README
 
-For the compulsive tinkerer, Garage is a little app for tracking expenses as they relate to machines in your garage.
+For the compulsive tinkerer, Garage is a little app for tracking mods and expenses as they relate to machines in your garage.
 
 === Things to come:
 
