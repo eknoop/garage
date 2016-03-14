@@ -54,7 +54,7 @@ class ExpensesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_expense
-      @expense = Expense.find(params[:id])
+      @expense = Expense.where(id: params[:id], machine_id: current_user.machines.pluck(:id)).first
     end
 
     def set_machine
